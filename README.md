@@ -115,3 +115,55 @@ AFTER:  Train GRAM → N trajectories → LPRM selects best → distill into 35B
 MIT
 
 > *"We don't give up. We do what others don't and build what isn't possible."* — RavenX LLC
+
+---
+
+## Model-Agnostic Wrapper (NEW)
+
+GRAM-MLX includes a **model-agnostic wrapper** that adds stochastic multi-trajectory reasoning to ANY model:
+
+```python
+from gram_wrapper import GRAMWrapper
+
+# Works with ANY model — Qwen, Llama, Mistral, Phi, Gemma, etc.
+gram = GRAMWrapper(dim=2048, n_guidance_layers=4)
+
+# Only ~5M trainable params on top of FROZEN base model
+print(f"Trainable: {gram.trainable_params:,}")  # ~5M
+print(f"Base model: FROZEN (0 trainable)")
+
+# Apply guidance to hidden states
+guided, mean, logvar = gram.guide_hidden_states(hidden_states, layer_idx=0)
+
+# Score and select best from N trajectories
+best_logits = gram.select_best(trajectories)
+```
+
+### Universal Reasoning Layer (OpenMythos + GRAM)
+
+```python
+from gram_wrapper import ReasoningLayer
+
+# Combines OpenMythos depth + GRAM width
+reasoning = ReasoningLayer(dim=2048, n_depth_loops=8, n_width_samples=20)
+
+# Generate best traces for distillation
+traces = reasoning.generate_traces(model, security_prompts)
+
+# Distill into production model → deeper + wider reasoning
+# Zero inference overhead on the final model
+```
+
+### Why Model-Agnostic Matters
+
+The same GRAM wrapper works on:
+
+| Model | Dim | GRAM Params | What It Adds |
+|-------|-----|-------------|-------------|
+| Phi-3 3.8B | 3072 | ~6M | Multi-trajectory reasoning |
+| Llama 3 8B | 4096 | ~8M | Explore parallel solutions |
+| Mistral 24B | 5120 | ~10M | Diverse attack chain analysis |
+| Qwen 35B MoE | 2048 | ~5M | Width scaling for security |
+| Llama 3 70B | 8192 | ~16M | Enterprise-grade reasoning |
+
+**Base model weights stay FROZEN. Only GRAM's tiny guidance networks train.**

@@ -7,3 +7,11 @@ from .gram_mlx import (
     PosteriorGuidance,
     LatentProcessRewardModel,
 )
+
+from .gram_wrapper import (
+    GRAMWrapper,
+    StochasticGuidanceLayer,
+    TrajectoryScorer,
+    GRAMForMLXModel,
+    ReasoningLayer,
+)
