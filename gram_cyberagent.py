@@ -114,7 +114,6 @@ class GRAMCyberAgent:
                 self.model, self.tokenizer,
                 prompt=formatted,
                 max_tokens=max_tokens,
-                temp=temperature,
             )
             dt = time.time() - t0
             
