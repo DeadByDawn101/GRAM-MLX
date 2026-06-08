@@ -106,9 +106,25 @@ AFTER:  Train GRAM → N trajectories → LPRM selects best → distill into 35B
 
 ## Credits
 
-- GRAM paper: Baek, Jo, Kim, Ren, Bengio, Ahn (KAIST/NYU/Mila)
+- GRAM paper: Baek, Jo, Kim, Ren, Bengio, Ahn (KAIST/NYU/Mila) — [arXiv:2605.19376](https://arxiv.org/abs/2605.19376)
 - MLX port: [@DeadByDawn101](https://github.com/DeadByDawn101) / RavenX LLC
-- OpenMythos-MLX: [github.com/DeadByDawn101/OpenMythos-MLX](https://github.com/DeadByDawn101/OpenMythos-MLX)
+
+## Contributors
+
+Built by [**@DeadByDawn101**](https://github.com/DeadByDawn101) / **RavenX LLC**
+
+- **Gabe Garcia** — Security Technical Program Manager, 8+ years Apple infosec, Google AI certified. Architecture, training data, vision.
+- **Claude (Anthropic)** — AI pair programmer. Code generation, research synthesis, implementation.
+
+## Part of the RavenX Ecosystem
+
+| Repo | Purpose |
+|------|---------|
+| [RavenX-CyberAgent](https://huggingface.co/deadbydawn101/RavenX-CyberAgent-Qwen3.6-35B-A3B-Opus-4.7-OpenMythos-Pentester-BugHunter-RATH-mlx) | 35B MoE security model |
+| [OpenMythos-MLX](https://github.com/DeadByDawn101/OpenMythos-MLX) | Recursive depth reasoning |
+| **GRAM-MLX** | **Stochastic multi-trajectory reasoning (this repo)** |
+| [ravenx-memory](https://github.com/DeadByDawn101/ravenx-memory) | Hybrid agent memory |
+| [ravenx-os](https://github.com/DeadByDawn101/ravenx-os) | Super repo |
 
 ## License
 
